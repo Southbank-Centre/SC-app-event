@@ -1,0 +1,143 @@
+<div class="event-single container" data-ng-controller='EventSingleCtrl'>
+
+  <article ng-show="event">
+
+    <div class="date">
+      <strong>{{ event.field_start_time | amDateFormat:'dddd D MMMM YYYY' }}</strong>
+      {{ event.field_start_time | amDateFormat:'h:mm' }}{{ event.field_start_time | amDateFormat:'a' | lowercase }}
+      <span ng-show="event.field_end_time"> &ndash; {{ event.field_end_time | amDateFormat:'h:mm' }}{{ event.field_end_time | amDateFormat:'a' | lowercase }}</span>
+    </div>
+
+    <header>
+
+      <div class="event-name" id="event-name">
+        <h1>{{ event.title }}</h1>
+        <a href="#full-description" du-smooth-scroll offset="120" class="scroll-link" ng-show="event.field_description.value">Full description</a>
+      </div>
+
+      <div class="ticket-box">
+        
+        <div data-ng-if='event.field_wristband_ticket.length > 0' data-ng-repeat='field_wristband_ticket in event.field_wristband_ticket' class="ticket-option" ng-show="field_wristband_ticket" ng-switch on="field_wristband_ticket.name">
+
+          {{ field_wristband_ticket | formatTicketHelpText }} 
+
+          <a class="ticket-help-more-info" ui-sref="wow.page({ pageId: festival.field_ticket_information_page.alias_json })" ng-show="festival.field_ticket_information_page">more&nbsp;info</a>
+
+          <a ng-switch-default ng-href="{{ field_wristband_ticket.field_ticket_url.url }}" class="book-now-btn">
+            {{ field_wristband_ticket.field_button_label }} <span>£{{ field_wristband_ticket.field_ticket_price | twoDecimalPlacesIfFixed }}</span>
+          </a>
+
+          <a ng-switch-when='Stand Alone Event' ng-href="{{ event.field_performance_ticket_url }}" class="book-now-btn">
+            {{ field_wristband_ticket.field_button_label }} <span>{{ event.field_performance_ticket_price }}</span>
+          </a>
+
+          <a ng-switch-when='Free ticketed' ng-href="{{ event.field_performance_ticket_url }}" class="book-now-btn">
+            {{ field_wristband_ticket.field_button_label }} <span>Free</span>
+          </a>
+
+          <div ng-switch-when='Free' class="book-now-btn free-btn">
+            {{ field_wristband_ticket.field_button_label }} <span>Free</span>
+          </div>
+
+        </div>
+        
+      </div>
+
+    </header>
+
+    <div class="teaser">
+      <h2 data-ng-bind-html="event.field_teaser.value"></h2>
+    </div>
+
+    <div class="featured-img"><img ng-src="{{ event.field_production.field_image.file.url }}" alt="{{ event.field_production.field_image.alt }}" title="{{ event.field_production.field_image.title }}"></div>
+
+    <div class="event-details-container">
+
+      <div class="event-details-content">
+        <h4>Event Details</h4>
+        <dl>
+          <dt ng-show="event.field_production.field_venue">Venue</dt>
+          <dd ng-show="event.field_production.field_venue">
+            {{ event.field_production.field_venue.name }} <span data-ng-repeat='parent in event.field_production.field_venue.parent'> at {{ parent.name }}</span>
+          </dd>
+
+          <dt ng-show="event.field_start_time">Time</dt>
+          <dd ng-show="event.field_start_time">{{ event.field_start_time | amDateFormat:'h:mm' }}{{ event.field_start_time | amDateFormat:'a' | lowercase }}<span ng-show="event.field_end_time"> &ndash; {{ event.field_end_time | amDateFormat:'h:mm' }}{{ event.field_end_time | amDateFormat:'a' | lowercase }}</span></dd>
+
+          <dt ng-show="event.field_start_time">Date</dt>
+          <dd ng-show="event.field_start_time">{{ event.field_start_time | amDateFormat:'dddd D MMMM YYYY' }}</dd>
+
+          <dt ng-show="event.festival.length > 0">Festival</dt>
+          <dd ng-show="event.festival.length > 0"><span ng-show="festival.name" data-ng-repeat='festival in event.festival'>{{festival.name}}{{{true: '', false: ', '}[$last]}}</span></dd>
+
+          <dt ng-show="event.field_production.field_event_type">Type of event</dt>
+          <dd ng-show="event.field_production.field_event_type">{{ event.field_production.field_event_type.name }}</dd>
+
+          <dt ng-show="event.field_production.field_age_recommended">Age</dt>
+          <dd ng-show="event.field_production.field_age_recommended">{{ event.field_production.field_age_recommended }}</dd>
+
+          <dt ng-show="event.duration">Running Time</dt>
+          <dd ng-show="event.duration">{{ event.duration }} mins</dd>
+        </dl>
+      </div>
+
+      <div class="booking-information-content" ng-show="event.field_production.field_ticket_prices || event.field_production.premiumPrice || event.field_production.field_concessions">
+        <h4>Booking Information</h4>
+        <dl>
+          <dt ng-show="event.field_production.field_ticket_prices">Price</dt>
+          <dd ng-show="event.field_production.field_ticket_prices" data-ng-bind-html="event.field_production.field_ticket_prices.value"></dd>
+
+          <dt ng-show="event.field_production.premiumPrice">Premium seats</dt>
+          <dd ng-show="event.field_production.premiumPrice">{{ event.field_production.premiumPrice }}</dd>
+
+          <dt ng-show="event.field_production.field_concessions">Concessions</dt>
+          <dd ng-show="event.field_production.field_concessions" data-ng-bind-html="event.field_production.field_concessions.value"></dd>
+        </dl>
+      </div>
+
+    </div>
+
+    <div ng-show="event.field_description.value" class="full-description" id="full-description">
+      <h4>Full Description</h4>
+      <div data-ng-bind-html="event.field_description.value"></div>
+    </div>
+
+    <div ng-show="event.field_people.length > 0" class="event-speakers-artists">
+      <h2>Speakers & Artists ({{ event.field_people.length }})</h2>
+      <div data-ng-repeat="person in event.field_people" class="container">
+        
+        <figure class="person-image-container" ng-show="person.field_photo.field_image_file.field_image.file.url">
+
+          <a ui-sref="wow.person({ personId: person.alias_json })">
+
+            <img ng-src="{{ person.field_photo.field_image_file.field_image.file.url }}" alt="{{ person.field_photo.field_image_file.field_image.alt }}" title="{{ person.field_photo.field_image_file.field_image.title }}" />
+          </a>
+        </figure>
+
+        <div class="person-info-container">
+          
+            <h3 class="event-person-name">
+
+              <a ui-sref="wow.person({ personId: person.alias_json })">
+                <span class="event-person-first-name">{{ person.field_first_name }} </span><span class="event-person-last-name">{{ person.field_last_name }}</span>
+              </a>
+            </h3>
+            <a ui-sref="wow.person({ personId: person.alias_json })" class="read-more-link">Read more</a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div ng-show="festival.title" class="festival-name">
+      <div>This event is part of <strong>Southbank Centre's {{ festival.title }}</strong></div>
+    </div>
+
+    <div ng-show="festival.field_description.value" class="festival-description">
+      <h2 data-ng-bind-html="festival.field_description.value"></h2>
+      <img ng-show="festival.field_image_logo_small.file.url" ng-src="{{ festival.field_image_logo_small.file.url }}" alt="" class="festival-logo">
+    </div>
+
+  </article>
+  
+</div>

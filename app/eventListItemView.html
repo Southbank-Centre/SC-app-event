@@ -1,0 +1,49 @@
+<div class="event-list-img">
+  <a ui-sref="wow.eventSingle({ eventId: event.alias_json })">
+    <img ng-src="{{ event.field_production.field_image.file.url }}" alt="{{ event.field_production.field_image.alt }}">
+  </a>
+</div>
+
+<div class="event-list-details">
+
+  <h2><a ui-sref="wow.eventSingle({ eventId: event.alias_json })">{{ event.title }}</a></h2>
+  <h3 ng-show="event.field_production.field_subheading">{{ event.field_production.field_subheading }}</h3>
+
+  <div class="event-list-date" ng-show="event.field_start_time">
+    <strong>{{ event.field_start_time | amDateFormat:'dddd D MMMM YYYY' }}</strong>
+    {{ event.field_start_time | amDateFormat:'h:mm' }}{{ event.field_start_time | amDateFormat:'a' | lowercase }}<span ng-show="event.field_end_time"> &ndash; {{ event.field_end_time | amDateFormat:'h:mm' }}{{ event.field_end_time | amDateFormat:'a' | lowercase }}</span>
+  </div>
+
+  <div class="event-list-type">{{ event.field_production.field_event_type.name }}</div>
+
+  <div data-ng-bind-html="event.field_teaser.value"></div>
+
+</div>
+
+<div class="ticket-box">
+  
+  <div data-ng-if='event.field_wristband_ticket.length > 0' data-ng-repeat='field_wristband_ticket in event.field_wristband_ticket' class="ticket-option" ng-show="field_wristband_ticket" ng-switch on="field_wristband_ticket.name">
+
+    {{ field_wristband_ticket | formatTicketHelpText }} 
+
+    <a class="ticket-help-more-info" ui-sref="wow.page({ pageId: festival.field_ticket_information_page.alias_json })" ng-show="festival.field_ticket_information_page">more&nbsp;info</a>
+
+    <a ng-switch-default ng-href="{{ field_wristband_ticket.field_ticket_url.url }}" class="book-now-btn">
+      {{ field_wristband_ticket.field_button_label }} <span>£{{ field_wristband_ticket.field_ticket_price | twoDecimalPlacesIfFixed }}</span>
+    </a>
+
+    <a ng-switch-when='Stand Alone Event' ng-href="{{ event.field_performance_ticket_url }}" class="book-now-btn">
+      {{ field_wristband_ticket.field_button_label }} <span>{{ event.field_performance_ticket_price }}</span>
+    </a>
+
+    <a ng-switch-when='Free ticketed' ng-href="{{ event.field_performance_ticket_url }}" class="book-now-btn">
+      {{ field_wristband_ticket.field_button_label }} <span>Free</span>
+    </a>
+
+    <div ng-switch-when='Free' class="book-now-btn free-btn">
+      {{ field_wristband_ticket.field_button_label }} <span>Free</span>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,84 @@
+<div class="events-list" data-ng-controller='EventListCtrl'>
+  
+  <h1 class="page-heading">What&rsquo;s On</h1>
+
+  <div class="container">
+    <div class="page-loading container" ng-hide="events || !festival"></div>
+  </div>
+
+  <div class="search-filters" ng-show="events">
+
+    <h2>Filter by:</h2>
+    <label class="ticket-type-filter-label" for="ticket-type-filter">Filter by ticket type</label>
+    <select 
+      class="event-filter ticket-type-filter"
+      id="ticket-type-filter"
+      ng-model="search.ticketTypes"
+      ng-options="ticketType.name | slugify as (ticketType.name + (ticketType.field_ticket_price !== '0' ? ' (£' + ticketType.field_ticket_price + ')' : '')) for ticketType in ticketTypes.list" 
+      ng-change="resetEvents()"
+    >
+      <option value="">All ticket types</option>
+    </select>
+
+    <label class="event-type-filter-label" for="event-type-filter">Filter by event type</label>
+    <select 
+      class="event-filter event-type-filter"
+      id="event-type-filter"  
+      ng-model="search.eventTypeSlug"
+      ng-options="event.eventTypeSlug as event.eventType for event in allEvents.list | unique: 'eventType'" 
+      ng-change="resetEvents()"
+    >
+      <option value="">All events</option> 
+    </select>
+
+    <label class="festival-day-filter-label" for="event-day-filter">Filter by day</label>
+    <select 
+      class="event-filter event-day-filter"
+      id="event-day-filter"
+      ng-model="search.field_start_day"
+      ng-options="festivalDay.day | amDateFormat:'dddd D MMMM YYYY' as festivalDay.day | amDateFormat:'dddd D MMMM YYYY' for festivalDay in festival.festivalDays" 
+      ng-change="resetEvents()"
+    >
+      <option value="">All days</option>
+    </select>
+
+    <!--<input ng-model="search.$" placeholder="Search for events" class="search-filter">-->
+
+  </div>
+
+  <div class="container">
+
+    <div class="ticket-info-page-link-container">
+      <a ui-sref="wow.page({ pageId: festival.field_ticket_information_page.alias_json })" ng-show="festival.field_ticket_information_page">{{ festival.field_ticket_information_page.title }}</a>
+    </div>
+
+  </div>
+
+  <article infinite-scroll='loadNextEvents()' infinite-scroll-distance='0' infinite-scroll-disabled='allEvents.list.length === events.length'>
+
+    <div class="repeat-animation" ng-if="showAllDays()" ng-repeat="(field_start_day, eventsDay) in events | filter:search:strictOrAll | groupBy: 'field_start_day' | toArray:true | orderBy:'eventsDay.$key'" id="event-name">
+
+      <h2 class="event-list-heading">{{ eventsDay.$key | amDateFormat: 'dddd D MMMM YYYY' }}</h2>
+
+      <div class="event-list-container container" ng-repeat="event in eventsDay track by event.nid" ng-include="'app/components/event/eventListItemView.html'"></div>
+
+    </div>
+
+    <div class="repeat-animation" ng-if="!showAllDays()" ng-repeat="(field_start_hour, eventsHour) in events | filter:search:strictOrAll | groupBy: 'field_start_hour'" id="event-name">
+
+      <h2 class="event-list-heading">{{ field_start_hour | amDateFormat : 'ha' }}</h2>
+
+      <div class="event-list-container container" ng-repeat="event in eventsHour track by event.nid" ng-include="'app/components/event/eventListItemView.html'"></div>
+
+    </div>
+
+    <h2 class="no-results repeat-animation" ng-show="(events | filter:search:strictOrAll).length == 0">No events found.</h2>
+
+    <div ng-hide="selectFiltersApplied() || allEvents.list.length === events.length" class="container infinite-scroll-spinner-container">
+      <div class="page-loading"></div>
+    </div>
+
+  </article>
+
+
+</div>

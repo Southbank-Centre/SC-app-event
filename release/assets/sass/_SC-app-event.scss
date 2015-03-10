@@ -1,0 +1,389 @@
+// Event
+
+.date, .teaser, .event-details-container, .full-description, .festival-name, .festival-description {
+  background: $white; 
+  margin-bottom: 2px;
+  padding: $padding; 
+}
+
+.date { 
+  @include adjust-font-size-to(12px);
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(6);
+    @include adjust-font-size-to(14px);
+  }
+
+  @include breakpoint($bp-desktop) {
+    @include span(4); 
+  }
+
+  color: $secondary-highlight;
+  padding: $padding/2 $padding; 
+}
+
+.event-single {
+
+  min-height: 200px;
+
+  article header {
+    margin-bottom: 2px;
+    clear: both;
+    @include breakpoint($bp-small-desktop) {
+      display: table; width: 100%; // set equal height columns for multi-column breakpoints
+    }
+  }
+
+}
+
+.event-name {
+  background: $white;
+  padding: $padding $padding 0; 
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(8);
+    float: none; display: table-cell; // set equal height columns for multi-column breakpoints
+    padding: $padding;
+  }
+
+  @include breakpoint($bp-desktop) {
+    @include span(7);
+    float: none; display: table-cell; // set equal height columns for multi-column breakpoints
+  }
+}
+
+.ticket-box {
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(4 last wide);
+    float: none; display: table-cell; // set equal height columns for multi-column breakpoints
+    vertical-align: bottom;
+    border-left: 2px solid $bg-color;
+    padding-top: 0;
+  }
+
+  @include breakpoint($bp-desktop) {
+    @include span(3 last wide);
+    float: none; display: table-cell; // set equal height columns for multi-column breakpoints
+    vertical-align: bottom;
+    border-left: 2px solid $bg-color;
+    padding-top: 0;
+  }
+  vertical-align: top;
+  background: $white;
+  padding: 0; 
+
+  .ticket-option {
+    padding: ($padding/4)*3 $padding;
+    border-top: 2px solid $bg-color;
+    &:first-child { 
+      border-top: none;
+    }
+
+    .ticket-help-more-info {
+      @include special-link;
+    }
+  }
+
+  .book-now-btn {
+    max-width: 100%;
+    margin-top: $margin/2;
+    max-height:42px;
+    overflow:hidden;
+
+    @include breakpoint($bp-mobile) {
+      max-width: 50%;
+    }
+
+    @include breakpoint($bp-small-desktop) {
+      max-width: 100%;
+    }
+
+    &.no-booking {
+      background-image:none;
+    }
+  }
+}
+
+.teaser {
+  @include breakpoint($bp-small-desktop) {
+    @include span(8);
+  }
+  @include breakpoint($bp-desktop) {
+    @include span(7);
+  }
+
+  p {
+    margin:0;
+  }
+
+  clear: both;
+  position: relative;
+}
+
+.featured-img { 
+  @include breakpoint($bp-small-desktop) {
+    margin-top: -70px;
+    @include span(8);
+  }
+
+  img { width: 100%; height: auto; }
+}
+
+.event-details-container {
+  @include clearfix;
+  @include adjust-font-size-to(12px);
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(10);
+    @include adjust-font-size-to(14px);
+  }
+
+  .event-details-content {
+    @include breakpoint($bp-mobile) {
+      @include span(5 of 10); 
+    }
+
+    padding-left: 20px;
+  }
+
+  .booking-information-content {
+    padding-left: 20px;
+    margin-top: $margin;
+
+    @include breakpoint($bp-mobile) {
+      @include span(5 of 10 last);
+      padding-left: 0;
+      margin-top: 0;
+    }
+
+  }
+
+  padding: $padding 0;
+
+  dt {
+    @include span(35%);
+    float:left;
+    display:inline-block;
+    clear:left;
+  }
+
+  dd {
+    overflow:hidden;
+    margin-right:$margin;
+
+    p:first-of-type {
+      margin-top:0;
+    }
+  }
+}
+
+.full-description {
+  clear: both;
+  margin: $margin 0;
+  @include adjust-font-size-to(12px);
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(8);
+    @include adjust-font-size-to(14px);
+  }
+
+  p:first-of-type {
+    margin-top: 0;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.event-speakers-artists {
+  clear: both;
+  margin: $margin 0 $margin*2;
+  @include adjust-font-size-to(12px);
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(9);
+    @include adjust-font-size-to(14px);
+  }
+
+  h2 { margin: 0 $margin $margin; }
+
+  figure { margin: 0; }
+
+  .container { 
+    @include clearfix;
+    background: $white; 
+    margin-bottom: 2px; 
+  }
+
+  .person-image-container {
+    @include span(4 of 9);
+    @include breakpoint($bp-small-desktop) {
+      @include span(3 of 9);
+    }
+
+    img {
+      max-width: 100%;
+      min-width: 100%;
+      display: block;
+    }
+  }
+
+  .person-info-container {
+    @include span(5 of 9 last);
+    padding:$padding;
+    h3 a {
+      color: $black; background: none;
+    }
+    @include breakpoint($bp-small-desktop) {
+      @include span(6 of 9 last);
+    }
+  }
+}
+
+.festival-name {
+  clear: both;
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(6);
+  }
+
+  padding: $padding/2 $padding;
+}
+
+.festival-description {
+  @include clearfix;
+  padding: $padding 0;
+  clear: both;
+  margin-bottom: 50px;
+
+  @include breakpoint($bp-small-desktop) {
+    @include span(10);
+  }
+
+  h2 {
+    @include span(7 of 12);
+
+    @include breakpoint($bp-small-desktop) {
+      @include span(8 of 10);
+    }
+
+    padding-left: $padding;
+  }
+
+  .festival-logo {
+    @include span(4 of 12 last);
+
+    @include breakpoint($bp-small-desktop) {
+      @include span(2 of 10 last);
+    }
+    
+    padding-right: $padding;
+  }
+}
+
+
+// Events List
+ 
+.events-list {
+
+  min-height: 200px;
+
+  .page-heading {
+    margin-top:$margin;
+
+    @include breakpoint($bp-small-desktop) {
+      margin-top:$margin*2.5;
+    }
+  }
+
+  .ticket-info-page-link-container {
+    padding-top: $padding;
+    padding-right: $padding;
+    text-align:right;
+
+    @include breakpoint($bp-small-desktop) {
+      padding-top:26px;
+      margin-bottom:-100%;
+    }
+
+    a {
+      @include special-link;
+    }
+  }
+
+  .event-list-heading { 
+    @include adjust-font-size-to(24px);
+    padding: $section-margin-top $padding $padding*0.75 $padding;
+  }
+
+  .event-list-container {
+    margin-bottom: 5px;
+    clear: both;
+    @include breakpoint($bp-small-desktop) {
+      display: table; width: 100%; // set equal height columns for multi-column breakpoints
+      margin-bottom: 2px;
+    }
+
+    .event-list-img { 
+      @include span(4);
+      float: none; display: table-cell;
+      border-bottom: 2px solid $bg-color;
+
+      @include breakpoint($bp-small-desktop) {
+        @include span(3);
+        float: none; display: table-cell;
+        border-bottom: 0;
+      }
+      img { width: 100%; height: auto; display: block; }
+    }
+
+    .event-list-details {
+      vertical-align: top;
+      @include span(8);
+      float: none; display: table-cell;
+      border-left: 2px solid $bg-color;
+      border-bottom: 2px solid $bg-color;
+      
+      @include adjust-font-size-to(12px);
+
+      @include breakpoint($bp-mobile) { 
+        @include adjust-font-size-to(14px);      
+      }
+
+      @include breakpoint($bp-small-desktop) {
+        @include span(5 wide);
+        float: none; display: table-cell; // set equal height columns for multi-column breakpoints
+        border-left: 2px solid $bg-color;
+        border-bottom: 0;
+      }
+      @include breakpoint($bp-desktop) {
+        @include span(6 wide);
+        float: none; display: table-cell; // set equal height columns for multi-column breakpoints
+        border-left: 2px solid $bg-color;
+        border-bottom: 0;
+      }
+      background-color: white;
+      padding: $padding $padding/2 $padding/2 $padding;
+      margin-bottom: 1px;
+      h2 {
+        @include adjust-font-size-to(21px);
+        font-family: 'SC AkkuratBold';
+        margin-bottom: 0.5em; 
+        a { background: none; color: $black; }
+        a:hover { color: $link-color; }
+      }
+      h3 {
+        @include adjust-font-size-to(15px);
+          font-weight: normal; 
+      }
+      .event-list-type {
+        margin: 0 0 0.5em;
+      }
+
+    }
+    
+  }
+
+}
