@@ -55,13 +55,13 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    uglify: {
+    concat: {
+      options: {
+        separator: ';',
+      },
       dist: {
-        files: {
-          '<%= appConfig.dist %>/<%= appConfig.name %>.min.js': [
-            '.tmp/js/**/*.js'
-          ]
-        }
+        src: '.tmp/js/**/*.js',
+        dest: '<%= appConfig.dist %>/<%= appConfig.name %>.js',
       }
     },
 
@@ -140,7 +140,7 @@ module.exports = function (grunt) {
       'ngAnnotate',
       'copy:' + target,
       'cdnify',
-      'uglify',
+      'concat',
       'htmlmin'
     ]);
   });
