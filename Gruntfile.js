@@ -60,8 +60,8 @@ module.exports = function (grunt) {
         separator: ';',
       },
       dist: {
-        src: '.tmp/js/**/*.js',
-        dest: '<%= appConfig.dist %>/<%= appConfig.name %>.js',
+        src: ['.tmp/js/'+ appConfig.name +'.module.js', '.tmp/js/**/*.js'],
+        dest: '<%= appConfig.dist %>/<%= appConfig.name %>.js'
       }
     },
 
