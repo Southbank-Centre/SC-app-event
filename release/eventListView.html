@@ -60,7 +60,7 @@
 
       <h2 class="event-list-heading">{{ eventsDay.$key | amDateFormat: 'dddd D MMMM YYYY' }}</h2>
 
-      <div class="event-list-container container" ng-repeat="event in eventsDay track by event.nid" ng-include="'app/components/event/eventListItemView.html'"></div>
+      <div class="event-list-container container" ng-repeat="event in eventsDay track by event.nid" ng-include="'bower_components/SC-app-event/release/eventListItemView.html'"></div>
 
     </div>
 
@@ -68,7 +68,7 @@
 
       <h2 class="event-list-heading">{{ field_start_hour | amDateFormat : 'ha' }}</h2>
 
-      <div class="event-list-container container" ng-repeat="event in eventsHour track by event.nid" ng-include="'app/components/event/eventListItemView.html'"></div>
+      <div class="event-list-container container" ng-repeat="event in eventsHour track by event.nid" ng-include="'bower_components/SC-app-event/release/eventListItemView.html'"></div>
 
     </div>
 
