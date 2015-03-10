@@ -1,8 +1,11 @@
 {
   "name": "SC-app-event",
   "version": "0.0.0",
-  "dependencies": { },
-  "devDependencies": { },
+  "dependencies": {
+  	"angular": "~1.2.0",
+  	"angular-moment": "~0.9.0",
+    "moment-timezone": "~0.3.0"
+  },
   "appPath": "app",
   "main": "./release/SC-app-event.min.js",
   "ignore": []
