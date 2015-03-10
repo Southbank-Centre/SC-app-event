@@ -9,7 +9,7 @@
  * Defines the state and behaviour of the $scope for the eventListView state
  */
 
-angular.module('wowApp')
+angular.module('SC-app-event')
   .controller('EventListCtrl', function ($rootScope, $scope, $stateParams, $location, eventFactory, utilitiesFactory, $filter, $window) {
 
     /**

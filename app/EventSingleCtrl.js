@@ -9,7 +9,7 @@
  * Defines the state and behaviour of the $scope for the eventSingleView state
  */
 
-angular.module('wowApp')
+angular.module('SC-app-event')
   .controller('EventSingleCtrl', function ($rootScope, $scope, $stateParams, $state, eventFactory, utilitiesFactory) {
 
     /**

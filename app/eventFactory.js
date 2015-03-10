@@ -8,7 +8,7 @@
  * Factory for loading event data into the wowApp
  */
 
-angular.module('wowApp')
+angular.module('SC-app-event')
   .factory('eventFactory', function($http, $rootScope, $filter, $window, utilitiesFactory, angularMomentConfig) {
 
     return {
