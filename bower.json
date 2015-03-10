@@ -7,6 +7,6 @@
     "moment-timezone": "~0.3.0"
   },
   "appPath": "app",
-  "main": "./release/SC-app-event.min.js",
+  "main": "./release/SC-app-event.js",
   "ignore": []
 }
