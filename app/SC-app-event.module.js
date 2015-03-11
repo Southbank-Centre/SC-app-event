@@ -1,11 +1,11 @@
-// 'use strict'; - Disabled to allow the festival planner to load (otherwise Uglify adds this to the top fo the minified scripts.js file)
+'use strict';
 
 /**
  * @ngdoc overview
- * @name wowApp
+ * @name SC-app-event
  * @description
  *
- * WOW - Women of the World Festival website AngularJS application.
+ * Provides the app with the ability to display event content and features
  */
 angular
   .module('SC-app-event', [
