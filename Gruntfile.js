@@ -65,6 +65,13 @@ module.exports = function (grunt) {
       }
     },
 
+    uglify: {
+      dist: {
+        src: ['<%= appConfig.dist %>/<%= appConfig.name %>.js'],
+        dest: '<%= appConfig.dist %>/<%= appConfig.name %>.min.js'
+      }
+    },
+
     htmlmin: {
       dist: {
         options: {
@@ -141,6 +148,7 @@ module.exports = function (grunt) {
       'copy:' + target,
       'cdnify',
       'concat',
+      'uglify',
       'htmlmin'
     ]);
   });
