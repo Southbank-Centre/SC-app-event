@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc service
- * @name wowApp.factory:eventFactory
+ * @name SC-app-event.factory:eventFactory
  *
  * @description
  * Factory for loading event data into the wowApp
@@ -15,8 +15,8 @@ angular.module('SC-app-event')
 
       /**
        * @ngdoc method
-       * @methodOf wowApp.factory:eventFactory
-       * @name wowApp.factory:eventFactory#getEventSingle
+       * @methodOf SC-app-event.factory:eventFactory
+       * @name SC-app-event.factory:eventFactory#getEventSingle
        * @returns {undefined} Undefined
        * @param {string} eventId The ID of the event
        * @param {function} callbackSuccess The function to call when the HTTP request succeeds
@@ -53,8 +53,8 @@ angular.module('SC-app-event')
 
       /**
        * @ngdoc method
-       * @methodOf wowApp.factory:eventFactory
-       * @name wowApp.factory:eventFactory#getEventList
+       * @methodOf SC-app-event.factory:eventFactory
+       * @name SC-app-event.factory:eventFactory#getEventList
        * @returns {undefined} Undefined
        * @param {function} callbackSuccess The function to call when the HTTP request succeeds
        * @param {function} callbackError The function to call when the HTTP request fails
@@ -65,7 +65,7 @@ angular.module('SC-app-event')
       getEventList: function (callbackSuccess, callbackError){
 
         // Function that loads the event list data from the API
-        var loadData = function() {
+        function loadData() {
           $http.get('/json/node.json?type=performance&sort=field_start_time&direction=ASC&field_festival=' + $rootScope.festivalId)
 
           .success(function(performances) {
@@ -83,11 +83,11 @@ angular.module('SC-app-event')
           })
 
           .error(callbackError);
-        };
+        }
 
         // Function that formats the event list data once it has been received
         // and the ticketing data has also been loaded onto the festival object
-        var formatData = function(performances) {
+        function formatData(performances) {
 
           // Array that will contain a list of keys for items
           // that should be removed from the list
@@ -154,7 +154,7 @@ angular.module('SC-app-event')
 
           callbackSuccess(performances);
 
-        };
+        }
 
         // If festival data already loaded, load event list data
         if ($rootScope.festivalDataLoaded) {
@@ -170,8 +170,8 @@ angular.module('SC-app-event')
 
       /**
        * @ngdoc method
-       * @methodOf wowApp.factory:eventFactory
-       * @name wowApp.factory:eventFactory#getEventCount
+       * @methodOf SC-app-event.factory:eventFactory
+       * @name SC-app-event.factory:eventFactory#getEventCount
        * @returns {undefined} Undefined
        * @param {function} callbackSuccess The function to call when the HTTP request succeeds
        * @param {function} callbackError The function to call when the HTTP request fails

@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc controller
- * @name wowApp.controller:EventSingleCtrl
+ * @name SC-app-event.controller:EventSingleCtrl
  * @controller
  *
  * @description
