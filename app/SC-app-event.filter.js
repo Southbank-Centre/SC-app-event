@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @ngdoc filter
  * @name SC-app-event.filter:formatTicketHelpText
@@ -16,4 +18,4 @@ angular
 
     };
 
-  })
+  });
