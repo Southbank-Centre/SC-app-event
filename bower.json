@@ -8,5 +8,13 @@
   },
   "appPath": "app",
   "main": "./release/SC-app-event.js",
-  "ignore": []
+  "ignore": [
+    "**/.*",
+    "app",
+    "assets",
+    "node_modules",
+    "bower_components",
+    "package.json",
+    "Gruntfile.js"
+  ]
 }
