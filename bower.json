@@ -11,7 +11,6 @@
   "ignore": [
     "**/.*",
     "app",
-    "assets",
     "node_modules",
     "bower_components",
     "package.json",
