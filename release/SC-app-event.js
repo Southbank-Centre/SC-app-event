@@ -270,7 +270,7 @@ angular.module('SC-app-event')
  * Replaces [TICKET NAME] in ticket help text with the name of the ticket
  */
 angular
-  .module('SC-app')
+  .module('SC-app-event')
   .filter('formatTicketHelpText', function() {
 
     return function (ticket) {
