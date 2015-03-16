@@ -49,7 +49,7 @@
   <div class="container">
 
     <div class="ticket-info-page-link-container">
-      <a ui-sref="wow.page({ pageId: festival.field_ticket_information_page.alias_json })" ng-show="festival.field_ticket_information_page">{{ festival.field_ticket_information_page.title }}</a>
+      <a ui-sref="app.pageSingle({ pageAlias: festival.field_ticket_information_page.alias_json })" ng-show="festival.field_ticket_information_page">{{ festival.field_ticket_information_page.title }}</a>
     </div>
 
   </div>

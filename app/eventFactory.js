@@ -5,7 +5,7 @@
  * @name SC-app-event.factory:eventFactory
  *
  * @description
- * Factory for loading event data into the wowApp
+ * Factory for loading event data
  */
 
 angular.module('SC-app-event')

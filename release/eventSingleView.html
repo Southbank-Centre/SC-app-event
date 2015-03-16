@@ -21,7 +21,7 @@
 
           {{ field_wristband_ticket | formatTicketHelpText }} 
 
-          <a class="ticket-help-more-info" ui-sref="wow.page({ pageId: festival.field_ticket_information_page.alias_json })" ng-show="festival.field_ticket_information_page">more&nbsp;info</a>
+          <a class="ticket-help-more-info" ui-sref="app.pageSingle({ pageAlias: festival.field_ticket_information_page.alias_json })" ng-show="festival.field_ticket_information_page">more&nbsp;info</a>
 
           <a ng-switch-default ng-href="{{ field_wristband_ticket.field_ticket_url.url }}" class="book-now-btn">
             {{ field_wristband_ticket.field_button_label }} <span>£{{ field_wristband_ticket.field_ticket_price | twoDecimalPlacesIfFixed }}</span>
@@ -108,7 +108,7 @@
         
         <figure class="person-image-container" ng-show="person.field_photo.field_image_file.field_image.file.url">
 
-          <a ui-sref="wow.person({ personId: person.alias_json })">
+          <a ui-sref="app.personSingle({ personAlias: person.alias_json })">
 
             <img ng-src="{{ person.field_photo.field_image_file.field_image.file.url }}" alt="{{ person.field_photo.field_image_file.field_image.alt }}" title="{{ person.field_photo.field_image_file.field_image.title }}" />
           </a>
@@ -118,11 +118,11 @@
           
             <h3 class="event-person-name">
 
-              <a ui-sref="wow.person({ personId: person.alias_json })">
+              <a ui-sref="app.personAlias({ personAlias: person.alias_json })">
                 <span class="event-person-first-name">{{ person.field_first_name }} </span><span class="event-person-last-name">{{ person.field_last_name }}</span>
               </a>
             </h3>
-            <a ui-sref="wow.person({ personId: person.alias_json })" class="read-more-link">Read more</a>
+            <a ui-sref="app.personAlias({ personAlias: person.alias_json })" class="read-more-link">Read more</a>
 
         </div>
 
