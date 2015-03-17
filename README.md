@@ -23,7 +23,7 @@ Add **SC-app-event** to the dependency list in **[YourAppName].module.js**
 Add the app.eventSingle and app.eventList states to your app:
 
     .state('app.eventSingle', {
-      url: '^/event/:eventAlias',
+      url: '^/whats-on/:eventAlias',
       views: {
         '@': {
           templateUrl: 'bower_components/SC-app-event/release/eventSingleView.html'
@@ -31,7 +31,7 @@ Add the app.eventSingle and app.eventList states to your app:
       }
     })
     .state('app.eventList', {
-      url: '^/event',
+      url: '^/whats-on',
       reloadOnSearch: false,
       views: {
         '@': {
