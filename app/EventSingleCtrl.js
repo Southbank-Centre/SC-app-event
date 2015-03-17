@@ -15,7 +15,7 @@ angular.module('SC-app-event')
     /**
      * Method for getting one event from the API
      */
-    eventFactory.getEventSingle($stateParams.eventId, function(data) {
+    eventFactory.getEventSingle($stateParams.eventAlias, function(data) {
 
       // SUCCESS
       // Attach the event data to the scope

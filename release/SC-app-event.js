@@ -247,7 +247,7 @@ angular.module('SC-app-event')
     /**
      * Method for getting one event from the API
      */
-    eventFactory.getEventSingle($stateParams.eventId, function(data) {
+    eventFactory.getEventSingle($stateParams.eventAlias, function(data) {
 
       // SUCCESS
       // Attach the event data to the scope
@@ -290,7 +290,7 @@ angular
  */
 
 angular.module('SC-app-event')
-  .factory('eventFactory', ["$http", "$rootScope", "$filter", "$window", "utilitiesFactory", "angularMomentConfig", function($http, $rootScope, $filter, $window, utilitiesFactory, angularMomentConfig) {
+  .factory('eventFactory', ["$http", "$rootScope", "$filter", "$window", "utilitiesFactory", "angularMomentConfig", "appConfig", function($http, $rootScope, $filter, $window, utilitiesFactory, angularMomentConfig, appConfig) {
 
     return {
 
@@ -299,16 +299,16 @@ angular.module('SC-app-event')
        * @methodOf SC-app-event.factory:eventFactory
        * @name SC-app-event.factory:eventFactory#getEventSingle
        * @returns {undefined} Undefined
-       * @param {string} eventId The ID of the event
+       * @param {string} eventAlias The alias of the event
        * @param {function} callbackSuccess The function to call when the HTTP request succeeds
        * @param {function} callbackError The function to call when the HTTP request fails
        *
        * @description
-       * For getting data for a single event by event ID
+       * For getting data for a single event by event Alias
        */
-      getEventSingle: function(eventId, callbackSuccess, callbackError) {
+      getEventSingle: function(eventAlias, callbackSuccess, callbackError) {
 
-        $http.get('/json/api/performance/'+eventId)
+        $http.get('/json/api/performance/' + eventAlias)
           .success(function(performance) {
 
             // Correct date format for start and end dates
@@ -345,26 +345,28 @@ angular.module('SC-app-event')
        */
       getEventList: function (callbackSuccess, callbackError){
 
-        // Function that loads the event list data from the API
-        function loadData() {
-          $http.get('/json/node.json?type=performance&sort=field_start_time&direction=ASC&field_festival=' + $rootScope.festivalId)
+        var reqUrl = '/json/node.json?type=performance&sort=field_start_time&direction=ASC';
 
-          .success(function(performances) {
-
-            // If ticketing data already loaded, format event list data
-            if ($rootScope.ticketingDataLoaded) {
-              formatData(performances);
-            // If not, wait for ticketing data to be loaded before formatting event list data
-            } else {
-              $rootScope.$on('event:ticketingDataLoaded', function() {
-                formatData(performances);
-              });
-            }
-
-          })
-
-          .error(callbackError);
+        // Add the 'field_festival' filter if a festival has been defined
+        if (appConfig.festivalId) {
+          reqUrl = reqUrl + '&field_festival=' + appConfig.festivalId;
         }
+
+        $http.get(reqUrl).success(function(performances) {
+
+          // If ticketing data already loaded, format event list data
+          if ($rootScope.ticketingDataLoaded) {
+            formatData(performances);
+          // If not, wait for ticketing data to be loaded before formatting event list data
+          } else {
+            $rootScope.$on('event:ticketingDataLoaded', function() {
+              formatData(performances);
+            });
+          }
+
+        })
+
+        .error(callbackError);
 
         // Function that formats the event list data once it has been received
         // and the ticketing data has also been loaded onto the festival object
@@ -437,16 +439,6 @@ angular.module('SC-app-event')
 
         }
 
-        // If festival data already loaded, load event list data
-        if ($rootScope.festivalDataLoaded) {
-          loadData();
-        // If not, wait for festival data to be loaded before loading event list data
-        } else {
-          $rootScope.$on('event:festivalDataLoaded', function() {
-            loadData();
-          });
-        }
-
       },
 
       /**
@@ -462,15 +454,18 @@ angular.module('SC-app-event')
        */
       getEventCount: function(callbackSuccess, callbackError) {
 
-        $http.get('/json/node.count?type=performance&field_festival='+$rootScope.festivalId)
+        var reqUrl = '/json/node.count?type=performance';
 
-          .success(function(eventCount) {
+        // Add the 'field_festival' filter if a festival has been defined
+        if (appConfig.festivalId) {
+          reqUrl = reqUrl + '&field_festival=' + appConfig.festivalId;
+        }
+
+        $http.get(reqUrl).success(function(eventCount) {
 
             callbackSuccess(eventCount.count);
 
-          })
-
-          .error(callbackError);
+          }).error(callbackError);
 
       }
 
