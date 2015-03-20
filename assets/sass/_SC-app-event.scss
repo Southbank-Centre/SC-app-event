@@ -7,11 +7,9 @@
 }
 
 .date { 
-  @include adjust-font-size-to(12px);
 
   @include breakpoint($bp-small-desktop) {
     @include span(6);
-    @include adjust-font-size-to(14px);
   }
 
   @include breakpoint($bp-desktop) {
@@ -32,6 +30,7 @@
     @include breakpoint($bp-small-desktop) {
       display: table; width: 100%; // set equal height columns for multi-column breakpoints
     }
+
   }
 
 }
@@ -58,7 +57,7 @@
     @include span(4 last wide);
     float: none; display: table-cell; // set equal height columns for multi-column breakpoints
     vertical-align: bottom;
-    border-left: 2px solid $bg-color;
+    border-left: 2px solid $light-grey;
     padding-top: 0;
   }
 
@@ -66,7 +65,7 @@
     @include span(3 last wide);
     float: none; display: table-cell; // set equal height columns for multi-column breakpoints
     vertical-align: bottom;
-    border-left: 2px solid $bg-color;
+    border-left: 2px solid $light-grey;
     padding-top: 0;
   }
   vertical-align: top;
@@ -75,7 +74,7 @@
 
   .ticket-option {
     padding: ($padding/4)*3 $padding;
-    border-top: 2px solid $bg-color;
+    border-top: 2px solid $light-grey;
     &:first-child { 
       border-top: none;
     }
@@ -132,11 +131,9 @@
 
 .event-details-container {
   @include clearfix;
-  @include adjust-font-size-to(12px);
 
   @include breakpoint($bp-small-desktop) {
     @include span(10);
-    @include adjust-font-size-to(14px);
   }
 
   .event-details-content {
@@ -181,12 +178,6 @@
 .full-description {
   clear: both;
   margin: $margin 0;
-  @include adjust-font-size-to(12px);
-
-  @include breakpoint($bp-small-desktop) {
-    @include span(8);
-    @include adjust-font-size-to(14px);
-  }
 
   p:first-of-type {
     margin-top: 0;
@@ -200,11 +191,9 @@
 .event-speakers-artists {
   clear: both;
   margin: $margin 0 $margin*2;
-  @include adjust-font-size-to(12px);
 
   @include breakpoint($bp-small-desktop) {
     @include span(9);
-    @include adjust-font-size-to(14px);
   }
 
   h2 { margin: 0 $margin $margin; }
@@ -234,7 +223,7 @@
     @include span(5 of 9 last);
     padding:$padding;
     h3 a {
-      color: $black; background: none;
+      color: $dark-grey; background: none;
     }
     @include breakpoint($bp-small-desktop) {
       @include span(6 of 9 last);
@@ -314,7 +303,6 @@
   }
 
   .event-list-heading { 
-    @include adjust-font-size-to(24px);
     padding: $section-margin-top $padding $padding*0.75 $padding;
   }
 
@@ -329,7 +317,7 @@
     .event-list-img { 
       @include span(4);
       float: none; display: table-cell;
-      border-bottom: 2px solid $bg-color;
+      border-bottom: 2px solid $light-grey;
 
       @include breakpoint($bp-small-desktop) {
         @include span(3);
@@ -342,41 +330,30 @@
     .event-list-details {
       vertical-align: top;
       @include span(8);
-      float: none; display: table-cell;
-      border-left: 2px solid $bg-color;
-      border-bottom: 2px solid $bg-color;
-      
-      @include adjust-font-size-to(12px);
-
-      @include breakpoint($bp-mobile) { 
-        @include adjust-font-size-to(14px);      
-      }
+      float: none; 
+      display: table-cell;
+      border-left: 2px solid $light-grey;
+      border-bottom: 2px solid $light-grey;
 
       @include breakpoint($bp-small-desktop) {
         @include span(5 wide);
         float: none; display: table-cell; // set equal height columns for multi-column breakpoints
-        border-left: 2px solid $bg-color;
+        border-left: 2px solid $light-grey;
         border-bottom: 0;
       }
       @include breakpoint($bp-desktop) {
         @include span(6 wide);
         float: none; display: table-cell; // set equal height columns for multi-column breakpoints
-        border-left: 2px solid $bg-color;
+        border-left: 2px solid $light-grey;
         border-bottom: 0;
       }
       background-color: white;
       padding: $padding $padding/2 $padding/2 $padding;
       margin-bottom: 1px;
-      h2 {
-        @include adjust-font-size-to(21px);
-        font-family: 'SC AkkuratBold';
-        margin-bottom: 0.5em; 
-        a { background: none; color: $black; }
-        a:hover { color: $link-color; }
-      }
       h3 {
-        @include adjust-font-size-to(15px);
-          font-weight: normal; 
+        margin-bottom: 0.5em; 
+        a { background: none; color: $dark-grey; }
+        a:hover { color: $link-color; }
       }
       .event-list-type {
         margin: 0 0 0.5em;
