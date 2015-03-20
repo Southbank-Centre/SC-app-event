@@ -6,7 +6,7 @@
 
 <div class="event-list-details">
 
-  <h3><a ui-sref="wow.eventSingle({ eventAlias: event.alias_json })">{{ event.title }}</a></h3>
+  <h3><a ui-sref="app.eventSingle({ eventAlias: event.alias_json })">{{ event.title }}</a></h3>
 
   <div class="event-list-date" ng-show="event.field_start_time">
     <strong>{{ event.field_start_time | amDateFormat:'dddd D MMMM YYYY' }}</strong>
