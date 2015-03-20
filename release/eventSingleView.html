@@ -106,11 +106,11 @@
       <h2>Speakers & Artists ({{ event.field_people.length }})</h2>
       <div data-ng-repeat="person in event.field_people" class="container">
         
-        <figure class="person-image-container" ng-show="person.field_photo.field_image_file.field_image.file.url">
+        <figure class="person-image-container" ng-show="person.field_image.file.url">
 
           <a ui-sref="app.personSingle({ personAlias: person.alias_json })">
 
-            <img ng-src="{{ person.field_photo.field_image_file.field_image.file.url }}" alt="{{ person.field_photo.field_image_file.field_image.alt }}" title="{{ person.field_photo.field_image_file.field_image.title }}" />
+            <img ng-src="{{ person.field_image.file.url }}" alt="{{ person.field_image.alt }}" title="{{ person.field_image.title }}" />
           </a>
         </figure>
 
