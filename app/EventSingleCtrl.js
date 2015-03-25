@@ -29,7 +29,7 @@ angular.module('SC-app-event')
 
     }, utilitiesFactory.genericHTTPCallbackError);
 
-    $rootScope.$on('$routeChangeStart', function() {
+    $rootScope.$on('$stateChangeStart', function() {
 
       $rootScope.websiteTitle = $rootScope.websiteTitleDefault;
       $rootScope.websiteDescription = $rootScope.websiteDescriptionDefault;
