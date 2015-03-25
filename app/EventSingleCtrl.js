@@ -22,8 +22,8 @@ angular.module('SC-app-event')
       $scope.event = data;
       
       // Set description meta tag to event short description
-      $rootScope.eventDescription = $scope.event.field_teaser.value.replace(/(<([^>]+)>)/ig, '');
-      $rootScope.$broadcast('event:displayingEventPage');
+      $rootScope.websiteTitle = $scope.event.title;
+      $rootScope.websiteDescription = $scope.event.field_teaser.value.replace(/(<([^>]+)>)/ig, '');
 
     }, utilitiesFactory.genericHTTPCallbackError);
 
