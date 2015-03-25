@@ -254,10 +254,19 @@ angular.module('SC-app-event')
       $scope.event = data;
       
       // Set description meta tag to event short description
+      $rootScope.websiteTitleDefault = $rootScope.websiteTitle;
       $rootScope.websiteTitle = $scope.event.title;
+      $rootScope.websiteDescriptionDefault = $rootScope.websiteDescription;
       $rootScope.websiteDescription = $scope.event.field_teaser.value.replace(/(<([^>]+)>)/ig, '');
 
     }, utilitiesFactory.genericHTTPCallbackError);
+
+    $rootScope.$on('$routeChangeStart', function() {
+
+      $rootScope.websiteTitle = $rootScope.websiteTitleDefault;
+      $rootScope.websiteDescription = $rootScope.websiteDescriptionDefault;
+
+    });
 
   }]);;'use strict';
 
