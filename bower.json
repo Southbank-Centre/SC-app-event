@@ -6,7 +6,7 @@
     "angular-moment": "~0.9.0",
     "moment-timezone": "~0.3.0",
     "SC-app-utils": "Southbank-Centre/SC-app-utils#0.0.0",
-    "SC-app-festival": "Southbank-Centre/SC-app-festival#0.0.0",
+    "SC-app-festival": "Southbank-Centre/SC-app-festival#0.1.0",
     "SC-app-page": "Southbank-Centre/SC-app-page#0.0.0",
     "SC-app-person": "Southbank-Centre/SC-app-person#0.0.0"
   },
