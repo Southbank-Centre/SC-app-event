@@ -1,6 +1,6 @@
 {
   "name": "SC-app-event",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {},
   "devDependencies": {
     "connect-modrewrite": "~0.7.9",
