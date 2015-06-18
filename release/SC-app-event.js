@@ -125,6 +125,8 @@ angular.module('SC-app-event')
 
           delete $scope.search[filterName];
 
+          $scope.gaPageViewOnStateChange = true;
+
         } else {
 
           // Convert the moment object to a URL friendly
@@ -145,15 +147,24 @@ angular.module('SC-app-event')
         
       });
 
-      // Allow filter parameter change to be recorded in Google Analytics as a page view
+      // Allow filter parameter change to be recorded in Google Analytics as a page view, but only if it's not the first state visited (to avoid a double page view and an incorrect 0% bounce rate).
+      
       // Get virtual url for Google Tag Manager pageview
       var virtualUrl = $location.url();
 
-      // Push url to GTM dataLayer
-      $window.dataLayer.push({ 
-        event: 'pageview',
-        virtualUrl: virtualUrl 
-      });
+      if ( $scope.gaPageViewOnStateChange === false ) {
+        // Push url to GTM dataLayer
+        $window.dataLayer.push({ 
+          event: 'pageview',
+          virtualUrl: virtualUrl 
+        });
+
+        // console.log('pageview sent');
+
+      }
+      else {
+        $scope.gaPageViewOnStateChange = false;
+      }
 
     });
 
