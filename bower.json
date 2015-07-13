@@ -1,14 +1,12 @@
 {
   "name": "SC-app-event",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "dependencies": {
-    "angular": "~1.2.0",
-    "angular-moment": "~0.9.0",
-    "moment-timezone": "~0.3.0",
-    "SC-app-utils": "Southbank-Centre/SC-app-utils#0.0.1",
-    "SC-app-festival": "Southbank-Centre/SC-app-festival#0.1.0",
-    "SC-app-page": "Southbank-Centre/SC-app-page#0.0.0",
-    "SC-app-person": "Southbank-Centre/SC-app-person#0.0.0"
+    "angular": "~1.4.2",
+    "SC-app-utils": "Southbank-Centre/SC-app-utils#0.2.0",
+    "SC-app-festival": "Southbank-Centre/SC-app-festival#0.2.0",
+    "SC-app-page": "Southbank-Centre/SC-app-page#0.1.0",
+    "SC-app-person": "Southbank-Centre/SC-app-person#0.1.0"
   },
   "appPath": "app",
   "main": "./release/SC-app-event.min.js",
